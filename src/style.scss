@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-size: 1em;
+}
+html {
+  box-sizing: border-box;
+  font-family: Roboto Mono, monospace;
+}
+
+body {
+  color: var(--color-light--2);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+label {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+input,
+textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: #57534e;
+  line-height: 1.25rem;
+  border: 2px solid #e7e5e4;
+  border-radius: 1000px;
+  padding: 12px 24px;
+  transition: all 300ms;
+}
+
+input:focus {
+  outline: 3px solid #facc15;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}

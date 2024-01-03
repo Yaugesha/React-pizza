@@ -1,0 +1,29 @@
+.main-content {
+  text-align: center;
+
+  margin: 32px 0px 32px;
+  padding: 0px 16px;
+
+  .main-content__title {
+    font-size: 30px;
+    font-weight: 500;
+
+    margin-bottom: 32px;
+  }
+
+  .main-content__tagline {
+    color: #eab308;
+  }
+
+  .main-content__form-header {
+    font-size: 16px;
+    font-weight: 400;
+    color: #57534e;
+
+    margin-bottom: 16px;
+  }
+  .main-content__form-input {
+    width: 288px;
+    margin-bottom: 32px;
+  }
+}

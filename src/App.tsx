@@ -1,9 +1,23 @@
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Home from "./ui/Home";
+import AppLayout from "./ui/AppLayout";
+import Error from "./ui/Error";
+
 function App() {
-  return (
-    <>
-      <div>Hello React.ts</div>
-    </>
-  );
+  const router = createBrowserRouter([
+    {
+      element: <AppLayout />,
+      errorElement: <Error />,
+
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+      ],
+    },
+  ]);
+  return <RouterProvider router={router} />;
 }
 
 export default App;

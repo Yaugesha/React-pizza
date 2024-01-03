@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px;
+  border: #e7e5e4;
+
+  background-color: #facc15;
+  padding: 0.75rem 1.5rem;
+
+  .header__order-input {
+    width: 16rem;
+
+    font-size: 14px;
+    line-height: 22px;
+    color: #a8a29e;
+
+    background-color: #fef9c3;
+    border-radius: 1000px;
+    border: none;
+    padding: 8px 16px;
+
+    transition: 300ms;
+  }
+
+  .header__order-input:focus {
+    width: 18rem;
+    outline: 2px solid #eab308;
+  }
+}
+
+.logo {
+  letter-spacing: 0.1em;
+  font-weight: 400;
+}
