@@ -22,7 +22,6 @@ label {
 
 input,
 textarea {
-  width: 100%;
   font-family: inherit;
   font-size: 0.875rem;
   color: #57534e;
@@ -30,7 +29,6 @@ textarea {
   border: 2px solid #e7e5e4;
   border-radius: 1000px;
   padding: 12px 24px;
-  transition: all 300ms;
 }
 
 input:focus {
