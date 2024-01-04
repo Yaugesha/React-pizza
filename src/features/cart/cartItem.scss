@@ -1,0 +1,28 @@
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  list-style: none;
+  border-bottom: 1px solid #e7e5e4;
+
+  min-width: 640px;
+  padding: 12px 0px;
+
+  &__info {
+    font-weight: 400;
+    color: #292524;
+  }
+
+  &__settings {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  &__price {
+    font-size: 14px;
+    font-weight: 600;
+  }
+}

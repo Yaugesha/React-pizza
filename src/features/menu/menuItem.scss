@@ -4,16 +4,16 @@
   padding: 8px 0px;
   border-bottom: 1px solid #e7e5e4;
 
-  .menu-item__image {
+  &__image {
     height: 96px;
   }
 
-  .menu-item__image_sold-out {
+  &__image_sold-out {
     opacity: 0.7;
     filter: grayscale(1);
   }
 
-  .menu-item__description {
+  &__description {
     display: flex;
     flex-grow: 1;
     flex-direction: column;
@@ -21,21 +21,21 @@
     padding-top: 2px;
   }
 
-  .menu-item__ingredients {
+  &__ingredients {
     font-size: 14px;
     font-style: italic;
     color: #78716c;
     text-transform: capitalize;
   }
 
-  .menu-item__price {
+  &__price {
     margin-top: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  .menu-item__sold-out {
+  &__sold-out {
     font-size: 14px;
     font-weight: 500;
     color: #78716c;

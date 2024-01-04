@@ -3,6 +3,7 @@ import Home from "./ui/Home";
 import AppLayout from "./ui/AppLayout";
 import Error from "./ui/Error";
 import Menu from "./features/menu/Menu";
+import Cart from "./features/cart/Cart";
 
 function App() {
   const router = createBrowserRouter([
@@ -18,6 +19,10 @@ function App() {
         {
           path: "/menu",
           element: <Menu />,
+        },
+        {
+          path: "/cart",
+          element: <Cart />,
         },
       ],
     },
