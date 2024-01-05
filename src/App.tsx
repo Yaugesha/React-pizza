@@ -5,6 +5,7 @@ import Error from "./ui/Error";
 import Menu from "./features/menu/Menu";
 import Cart from "./features/cart/Cart";
 import CreateOrder from "./features/order/CreateOrder";
+import Order from "./features/order/Order";
 
 function App() {
   const router = createBrowserRouter([
@@ -27,7 +28,10 @@ function App() {
         },
         {
           path: "/order",
-          children: [{ path: "new", element: <CreateOrder /> }],
+          children: [
+            { path: "new", element: <CreateOrder /> },
+            { path: ":id", element: <Order /> },
+          ],
         },
       ],
     },

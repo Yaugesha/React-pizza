@@ -1,0 +1,23 @@
+.order-item {
+  border-top: 1px solid #e7e5e4;
+  padding: 12px 0px;
+
+  &__info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 14px;
+  }
+
+  &__price {
+    font-weight: 600;
+  }
+
+  &__ingridients {
+    font-size: 14px;
+    font-style: italic;
+    text-transform: capitalize;
+    padding-top: 4px;
+  }
+}
