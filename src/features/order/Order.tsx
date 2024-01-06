@@ -26,7 +26,7 @@ function Order() {
         <p className="bill__delivery-price">To pay on delivery: €48.00</p>
       </div>
       <div className="order__priority-button">
-        <Button text="MAKE PRIORITY" />
+        <Button text="MAKE PRIORITY" callback={() => {}} />
       </div>
     </div>
   );

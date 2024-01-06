@@ -1,7 +1,10 @@
 import Button from "../../ui/button";
+import { useDispatch, useSelector } from "react-redux";
 import "./menuItem.scss";
+import { store } from "../../store";
+import UpdateItemQuantity from "../cart/UpdateItemQuantity";
 
-type MenuItemProps = {
+export type MenuItemProps = {
   item: {
     id: number;
     name: string;
@@ -13,6 +16,9 @@ type MenuItemProps = {
 };
 
 function MenuItem({ item }: MenuItemProps) {
+  const cart = useSelector((store: store) => store.cart);
+  const dispatch = useDispatch();
+
   return (
     <li className="menu-item">
       <img
@@ -36,7 +42,43 @@ function MenuItem({ item }: MenuItemProps) {
           ) : (
             <>
               <p style={{ fontSize: "14px" }}>€{item.unitPrice}.00</p>
-              <Button text={"ADD TO CART"} />
+              {cart.items.find((cartItem) => {
+                return cartItem.name === item.name;
+              }) !== undefined ? (
+                <div className="menu-item__quantity">
+                  <UpdateItemQuantity
+                    name={item.name}
+                    ingredients={item.ingredients}
+                    unitPrice={item.unitPrice}
+                    count={
+                      cart.items.find((cartItem) => {
+                        return cartItem.name === item.name;
+                      })!.count
+                    }
+                  />
+                  <Button
+                    text={"DELETE"}
+                    type="small"
+                    callback={() => {
+                      dispatch({
+                        type: "cart/deleteItem",
+                        payload: { ...item },
+                      });
+                    }}
+                  />
+                </div>
+              ) : (
+                <Button
+                  text={"ADD TO CART"}
+                  type="small"
+                  callback={() => {
+                    dispatch({
+                      type: "cart/addItem",
+                      payload: { ...item },
+                    });
+                  }}
+                />
+              )}
             </>
           )}
         </div>

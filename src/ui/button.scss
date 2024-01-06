@@ -1,20 +1,48 @@
-.button {
+@mixin button($p-x, $p-y, $font) {
   background: #facc15;
-  font-size: 14px;
+  font-size: $font;
   font-weight: 600;
-  border: none;
+  border: 2px solid #fff;
   border-radius: 1000px;
+  padding: $p-y $p-x;
+}
 
-  padding: 16px 24px;
-
-  transition: all 300ms;
-
+@mixin hover() {
   &:hover {
     background-color: #fde047;
+    transition: 1300ms background-color;
   }
+}
+
+@mixin focus() {
   &:focus {
-    border: 2px solid #fff;
     background-color: #fde047;
     outline: 3px solid #fde047;
+  }
+}
+
+@mixin disabled() {
+  &:disabled {
+    background-color: #e5e5e5;
+  }
+}
+
+.button {
+  &_base {
+    @include button(24px, 16px, 14px);
+    @include hover();
+    @include focus();
+    @include disabled();
+  }
+
+  &_small {
+    @include button(16px, 8px, 12px);
+    @include hover();
+    @include focus();
+  }
+
+  &_round {
+    @include button(10px, 4px, 14px);
+    @include hover();
   }
 }

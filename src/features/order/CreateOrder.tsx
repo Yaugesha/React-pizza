@@ -1,8 +1,11 @@
 import { Form } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { store } from "../../store";
 import Button from "../../ui/button";
 import "./createOrder.scss";
 
 function CreateOrder() {
+  const user = useSelector((store: store) => store.user);
   return (
     <div className="form">
       <p className="form__header">Ready to order? Let's go!</p>
@@ -15,6 +18,7 @@ function CreateOrder() {
             className="form-field__input"
             type="text"
             name="first-name"
+            defaultValue={user.username}
             required
           />
         </div>
@@ -39,7 +43,7 @@ function CreateOrder() {
             name="adress"
             required
           />
-          <Button text="Get position" />
+          <Button text="Get position" callback={() => {}} />
         </div>
         <div
           className="form-field"
@@ -54,7 +58,7 @@ function CreateOrder() {
             Want to yo give your order priority?
           </label>
         </div>
-        <Button text="ORDER NOW FROM" />
+        <Button text="ORDER NOW FROM" callback={() => {}} />
       </Form>
     </div>
   );

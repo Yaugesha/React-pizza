@@ -35,6 +35,12 @@
     justify-content: space-between;
   }
 
+  &__quantity {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
   &__sold-out {
     font-size: 14px;
     font-weight: 500;
