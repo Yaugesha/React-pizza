@@ -3,6 +3,8 @@ import Button from "../../ui/button";
 import CartItem from "./CartItem";
 import { useDispatch, useSelector } from "react-redux";
 import { store } from "../../store";
+import { getCartQuantity } from "../../utils/cartGetters";
+import { cartItem } from "../../utils/types";
 import "./cart.scss";
 
 function Cart() {
@@ -17,18 +19,18 @@ function Cart() {
         <p className="link">&larr; Back to menu</p>
       </Link>
       <h2 className="cart__header">
-        {cart.quantity !== 0
+        {getCartQuantity(cart) !== 0
           ? `Your cart, ${user.username}`
           : `Your cart is still empty. Start adding some pizzas :)`}
       </h2>
       <ul className="cart__items-list">
-        {cart.items.map((item) => {
+        {cart.items.map((item: cartItem) => {
           return (
             <CartItem
+              id={item.id}
               name={item.name}
               price={item.unitPrice}
-              count={item.count}
-              ingredients={item.ingredients}
+              quantity={item.quantity}
             />
           );
         })}
@@ -36,14 +38,14 @@ function Cart() {
       <div className="cart__butons">
         <Button
           text="ORDER PIZZAS"
-          disabled={cart.quantity === 0}
+          disabled={getCartQuantity(cart) === 0}
           callback={() => {
             navigate("/order/new");
           }}
         />
         <Button
           text="CLEAR CART"
-          disabled={cart.quantity === 0}
+          disabled={getCartQuantity(cart) === 0}
           callback={() => {
             dispatch({ type: "cart/clear" });
           }}

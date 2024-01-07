@@ -1,26 +1,15 @@
 import Button from "../../ui/button";
+import { CartItemP } from "../../utils/interfaces";
 import UpdateItemQuantity from "./UpdateItemQuantity";
 import "./cartItem.scss";
 
-type CartItemProps = {
-  name: string;
-  ingredients: Array<string>;
-  count: number;
-  price: number;
-};
-
-function CartItem({ name, count, price, ingredients }: CartItemProps) {
+function CartItem({ id, name, quantity, price }: CartItemP) {
   return (
     <li className="cart-item">
-      <p className="cart-item__info">{`${count}× ${name}`}</p>
+      <p className="cart-item__info">{`${quantity}× ${name}`}</p>
       <div className="cart-item__settings">
-        <p className="cart-item__price">€{price * count}.00</p>
-        <UpdateItemQuantity
-          name={name}
-          unitPrice={price}
-          count={count}
-          ingredients={ingredients}
-        />
+        <p className="cart-item__price">€{price * quantity}.00</p>
+        <UpdateItemQuantity itemId={id} currentQuantity={quantity} />
         <Button text="DELETE" type="small" callback={() => {}} />
       </div>
     </li>

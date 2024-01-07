@@ -3,6 +3,7 @@ import Header from "./Header";
 import CartOverview from "../features/cart/CartOverview";
 import { useSelector } from "react-redux";
 import { store } from "../store";
+import { getCartQuantity } from "../utils/cartGetters";
 import "./appLayout.scss";
 
 function AppLayout() {
@@ -14,7 +15,7 @@ function AppLayout() {
       <main className="main">
         <Outlet />
       </main>
-      {cart.quantity !== 0 && <CartOverview />}
+      {getCartQuantity(cart) !== 0 && <CartOverview />}
     </>
   );
 }

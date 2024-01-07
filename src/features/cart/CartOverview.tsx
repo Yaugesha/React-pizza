@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { store } from "../../store";
+import { getCartPrice, getCartQuantity } from "../../utils/cartGetters";
 import "./cartOverview.scss";
 
 function CartOverview() {
@@ -9,7 +10,7 @@ function CartOverview() {
   const navigate = useNavigate();
 
   const cart = useSelector((store: store) => store.cart);
-  const defaultText = `${cart.quantity} pizzas €${cart.totalPrice}`;
+  const defaultText = `${getCartQuantity(cart)} pizzas €${getCartPrice(cart)}`;
 
   return (
     <div

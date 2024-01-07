@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
 import Button from "../../ui/button";
-import { cartItem } from "./cartSlice";
+import { updateItemQuantityP } from "../../utils/interfaces";
 import "./updateItemQuantity.scss";
 
-function UpdateItemQuantity({ name, ingredients, unitPrice, count }: cartItem) {
+function UpdateItemQuantity({ itemId, currentQuantity }: updateItemQuantityP) {
   const dispatch = useDispatch();
 
   return (
@@ -12,25 +12,25 @@ function UpdateItemQuantity({ name, ingredients, unitPrice, count }: cartItem) {
         text="-"
         type="round"
         callback={() => {
-          count === 1
+          currentQuantity === 1
             ? dispatch({
                 type: "cart/deleteItem",
-                payload: { name, ingredients, unitPrice, count },
+                payload: itemId,
               })
             : dispatch({
                 type: "cart/decrimentItem",
-                payload: { name, ingredients, unitPrice, count },
+                payload: itemId,
               });
         }}
       />
-      <span>{count}</span>
+      <span>{currentQuantity}</span>
       <Button
         text="+"
         type="round"
         callback={() => {
           dispatch({
             type: "cart/incrimentItem",
-            payload: { name, ingredients, unitPrice, count },
+            payload: itemId,
           });
         }}
       />

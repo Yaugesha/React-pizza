@@ -1,42 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-
-export type cartItem = {
-  name: string;
-  ingredients: Array<string>;
-  unitPrice: number;
-  count: number;
-};
-
-export type cart = {
-  items: Array<cartItem>;
-  priority: boolean;
-  totalPrice: number;
-  quantity: number;
-};
+import { cart, cartItem } from "../../utils/types";
 
 const initialState: cart = {
   items: [],
   priority: false,
-  totalPrice: 0,
-  quantity: 0,
 };
 
 const getItem = (
   items: Array<cartItem>,
-  itemName: string
+  itemID: number
 ): cartItem | undefined => {
   return items.find((item) => {
-    return item.name === itemName;
+    return item.id === itemID;
   });
 };
 
 const deleteItem = (
   items: Array<cartItem>,
-  itemName: string
+  itemID: number
 ): Array<cartItem> => {
   return items.filter((item) => {
-    return item.name !== itemName;
+    return item.id !== itemID;
   });
 };
 
@@ -45,26 +30,24 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action: PayloadAction<cartItem>) {
-      state.items.push({ ...action.payload, count: 1 });
-      state.totalPrice += action.payload.unitPrice;
-      state.quantity += 1;
+      state.items.push({
+        ...action.payload,
+        quantity: 1,
+        totalPrice: action.payload.unitPrice,
+      });
     },
-    deleteItem(state, action: PayloadAction<cartItem>) {
-      state.totalPrice -=
-        getItem(state.items, action.payload.name)!.count *
-        action.payload.unitPrice;
-      state.quantity -= getItem(state.items, action.payload.name)!.count;
-      state.items = deleteItem(state.items, action.payload.name);
+    deleteItem(state, action: PayloadAction<number>) {
+      state.items = deleteItem(state.items, action.payload);
     },
-    incrimentItem(state, action: PayloadAction<cartItem>) {
-      getItem(state.items, action.payload.name)!.count += 1;
-      state.totalPrice += action.payload.unitPrice;
-      state.quantity += 1;
+    incrimentItem(state, action: PayloadAction<number>) {
+      const item = getItem(state.items, action.payload);
+      item!.quantity++;
+      item!.totalPrice = item!.quantity * item!.unitPrice;
     },
-    decrimentItem(state, action: PayloadAction<cartItem>) {
-      getItem(state.items, action.payload.name)!.count -= 1;
-      state.totalPrice -= action.payload.unitPrice;
-      state.quantity -= 1;
+    decrimentItem(state, action: PayloadAction<number>) {
+      const item = getItem(state.items, action.payload);
+      item!.quantity--;
+      item!.totalPrice = item!.quantity * item!.unitPrice;
     },
     clear() {
       return initialState;

@@ -1,23 +1,17 @@
 import Button from "../../ui/button";
 import { useDispatch, useSelector } from "react-redux";
-import "./menuItem.scss";
 import { store } from "../../store";
 import UpdateItemQuantity from "../cart/UpdateItemQuantity";
+import { MenuItemP } from "../../utils/interfaces";
+import { getItemQuantity } from "../../utils/cartGetters";
+import { cartItem } from "../../utils/types";
+import "./menuItem.scss";
 
-export type MenuItemProps = {
-  item: {
-    id: number;
-    name: string;
-    unitPrice: number;
-    imageUrl: string;
-    ingredients: string[];
-    soldOut: boolean;
-  };
-};
-
-function MenuItem({ item }: MenuItemProps) {
+function MenuItem({ item }: MenuItemP) {
   const cart = useSelector((store: store) => store.cart);
   const dispatch = useDispatch();
+
+  console.log(item);
 
   return (
     <li className="menu-item">
@@ -42,19 +36,13 @@ function MenuItem({ item }: MenuItemProps) {
           ) : (
             <>
               <p style={{ fontSize: "14px" }}>€{item.unitPrice}.00</p>
-              {cart.items.find((cartItem) => {
+              {cart.items.find((cartItem: cartItem) => {
                 return cartItem.name === item.name;
               }) !== undefined ? (
                 <div className="menu-item__quantity">
                   <UpdateItemQuantity
-                    name={item.name}
-                    ingredients={item.ingredients}
-                    unitPrice={item.unitPrice}
-                    count={
-                      cart.items.find((cartItem) => {
-                        return cartItem.name === item.name;
-                      })!.count
-                    }
+                    itemId={item.id}
+                    currentQuantity={getItemQuantity(cart, item.id)}
                   />
                   <Button
                     text={"DELETE"}
@@ -62,7 +50,7 @@ function MenuItem({ item }: MenuItemProps) {
                     callback={() => {
                       dispatch({
                         type: "cart/deleteItem",
-                        payload: { ...item },
+                        payload: item.id,
                       });
                     }}
                   />
