@@ -12,7 +12,7 @@ const getItem = (
   itemID: number
 ): cartItem | undefined => {
   return items.find((item) => {
-    return item.id === itemID;
+    return item.pizzaId === itemID;
   });
 };
 
@@ -21,7 +21,7 @@ const deleteItem = (
   itemID: number
 ): Array<cartItem> => {
   return items.filter((item) => {
-    return item.id !== itemID;
+    return item.pizzaId !== itemID;
   });
 };
 
@@ -48,6 +48,9 @@ const cartSlice = createSlice({
       const item = getItem(state.items, action.payload);
       item!.quantity--;
       item!.totalPrice = item!.quantity * item!.unitPrice;
+    },
+    chgangePriority(state, action: PayloadAction<boolean>) {
+      state.priority = action.payload;
     },
     clear() {
       return initialState;

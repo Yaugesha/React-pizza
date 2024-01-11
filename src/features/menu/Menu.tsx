@@ -10,7 +10,9 @@ function Menu() {
     <>
       <ul>
         {menu.map((pizza) => {
-          return <MenuItem item={pizza} key={pizza.id} />;
+          return (
+            <MenuItem item={{ ...pizza, pizzaId: pizza.id }} key={pizza.id} />
+          );
         })}
       </ul>
     </>

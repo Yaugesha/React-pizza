@@ -5,9 +5,13 @@ export const getCartQuantity = (cart: cart): number => {
 };
 
 export const getCartPrice = (cart: cart): number => {
-  return cart.items.reduce((count, item) => count + item.totalPrice, 0);
+  const pizzasPrice = cart.items.reduce(
+    (count, item) => count + item.totalPrice,
+    0
+  );
+  return cart.priority ? pizzasPrice + pizzasPrice * 0.2 : pizzasPrice;
 };
 
 export const getItemQuantity = (cart: cart, itemId: number): number => {
-  return cart.items.find((item: cartItem) => item.id === itemId)!.quantity;
+  return cart.items.find((item: cartItem) => item.pizzaId === itemId)!.quantity;
 };

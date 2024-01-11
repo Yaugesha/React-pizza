@@ -1,10 +1,6 @@
-import { menuItem } from "../features/menu/MenuItem";
+import { orderNew, menuItem, order } from "../utils/types";
 
 const API_URL = "https://react-fast-pizza-api.onrender.com/api";
-
-type order = {
-  price: number;
-};
 
 export async function getMenu(): Promise<Array<menuItem>> {
   const res = await fetch(`${API_URL}/menu`);
@@ -23,8 +19,9 @@ export async function getOrder(id: string) {
   return data;
 }
 
-export async function createOrder(newOrder: order) {
+export async function createOrder(newOrder: orderNew): Promise<order> {
   try {
+    console.log(newOrder);
     const res = await fetch(`${API_URL}/order`, {
       method: "POST",
       body: JSON.stringify(newOrder),
@@ -35,13 +32,13 @@ export async function createOrder(newOrder: order) {
 
     if (!res.ok) throw Error();
     const { data } = await res.json();
-    return data;
+    return data as order;
   } catch {
     throw Error("Failed creating your order");
   }
 }
 
-export async function updateOrder(id: string, updateObj: order) {
+export async function updateOrder(id: string, updateObj: orderNew) {
   try {
     const res = await fetch(`${API_URL}/order/${id}`, {
       method: "PATCH",

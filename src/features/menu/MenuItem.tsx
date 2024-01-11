@@ -11,8 +11,6 @@ function MenuItem({ item }: MenuItemP) {
   const cart = useSelector((store: store) => store.cart);
   const dispatch = useDispatch();
 
-  console.log(item);
-
   return (
     <li className="menu-item">
       <img
@@ -41,8 +39,8 @@ function MenuItem({ item }: MenuItemP) {
               }) !== undefined ? (
                 <div className="menu-item__quantity">
                   <UpdateItemQuantity
-                    itemId={item.id}
-                    currentQuantity={getItemQuantity(cart, item.id)}
+                    itemId={item.pizzaId}
+                    currentQuantity={getItemQuantity(cart, item.pizzaId)}
                   />
                   <Button
                     text={"DELETE"}
@@ -50,7 +48,7 @@ function MenuItem({ item }: MenuItemP) {
                     callback={() => {
                       dispatch({
                         type: "cart/deleteItem",
-                        payload: item.id,
+                        payload: item.pizzaId,
                       });
                     }}
                   />

@@ -1,5 +1,5 @@
 export type cartItem = {
-  id: number;
+  pizzaId: number;
   name: string;
   ingredients: Array<string>;
   unitPrice: number;
@@ -12,6 +12,17 @@ export type cart = {
   priority: boolean;
 };
 
+export type user = {
+  username: string;
+  status: string;
+  position: {
+    latitude: number;
+    longitude: number;
+  };
+  address: string;
+  error: string;
+};
+
 export type menuItem = {
   id: number;
   name: string;
@@ -19,4 +30,32 @@ export type menuItem = {
   imageUrl: string;
   ingredients: string[];
   soldOut: boolean;
+};
+
+export type order = {
+  cart: Array<orderItem>;
+  estimatedDelivery: string;
+  id: string;
+  orderPrice: number;
+  priority: boolean;
+  priorityPrice: number;
+  status: string;
+};
+
+export type orderItem = {
+  addIngredients: Array<string>;
+  name: string;
+  pizzaId: number;
+  quantity: number;
+  removeIngredients: Array<string>;
+  totalPrice: number;
+  unitPrice: number;
+};
+
+export type orderNew = {
+  customer: string;
+  phone: string;
+  adress: string;
+  priority: boolean;
+  cart: Array<orderItem>;
 };

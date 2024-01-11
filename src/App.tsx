@@ -4,8 +4,10 @@ import AppLayout from "./ui/AppLayout";
 import Error from "./ui/Error";
 import Menu, { loader as menuLoader } from "./features/menu/Menu";
 import Cart from "./features/cart/Cart";
-import CreateOrder from "./features/order/CreateOrder";
-import Order from "./features/order/Order";
+import CreateOrder, {
+  action as crateOrderAction,
+} from "./features/order/CreateOrder";
+import Order, { loader as orderLoader } from "./features/order/Order";
 
 function App() {
   const router = createBrowserRouter([
@@ -30,8 +32,16 @@ function App() {
         {
           path: "/order",
           children: [
-            { path: "new", element: <CreateOrder /> },
-            { path: ":id", element: <Order /> },
+            {
+              path: "new",
+              element: <CreateOrder />,
+              action: crateOrderAction,
+            },
+            {
+              path: ":id",
+              element: <Order />,
+              loader: orderLoader,
+            },
           ],
         },
       ],

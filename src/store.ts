@@ -1,14 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./features/user/userSlice";
-import cartReducer, { cart } from "./features/cart/cartSlice";
+import cartReducer from "./features/cart/cartSlice";
+import { cart, user } from "./utils/types";
 
 export type store = {
   user: user;
   cart: cart;
-};
-
-type user = {
-  username: string;
 };
 
 const store = configureStore({

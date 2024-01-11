@@ -3,13 +3,13 @@ import { CartItemP } from "../../utils/interfaces";
 import UpdateItemQuantity from "./UpdateItemQuantity";
 import "./cartItem.scss";
 
-function CartItem({ id, name, quantity, price }: CartItemP) {
+function CartItem({ pizzaId, name, quantity, price }: CartItemP) {
   return (
     <li className="cart-item">
       <p className="cart-item__info">{`${quantity}× ${name}`}</p>
       <div className="cart-item__settings">
         <p className="cart-item__price">€{price * quantity}.00</p>
-        <UpdateItemQuantity itemId={id} currentQuantity={quantity} />
+        <UpdateItemQuantity itemId={pizzaId} currentQuantity={quantity} />
         <Button text="DELETE" type="small" callback={() => {}} />
       </div>
     </li>

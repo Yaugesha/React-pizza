@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigation } from "react-router-dom";
 import Header from "./Header";
 import CartOverview from "../features/cart/CartOverview";
 import { useSelector } from "react-redux";
@@ -8,6 +8,8 @@ import "./appLayout.scss";
 
 function AppLayout() {
   const cart = useSelector((store: store) => store.cart);
+  const navigation = useNavigation();
+  const isLoading = navigation.state === "loading";
 
   return (
     <>

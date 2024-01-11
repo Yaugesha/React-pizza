@@ -1,3 +1,15 @@
+@mixin status($color) {
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+
+  background-color: $color;
+  border-radius: 1000px;
+  padding: 4px 12px;
+}
+
 .order {
   padding: 24px 16px;
 
@@ -14,14 +26,15 @@
   }
 
   &__status {
-    font-size: 14px;
-    font-weight: 500;
-    color: #fff;
-    letter-spacing: 0.025em;
+    display: flex;
+    gap: 4px;
+    &_green {
+      @include status(#22c55e);
+    }
 
-    border-radius: 1000px;
-    background-color: #22c55e;
-    padding: 4px 12px;
+    &_red {
+      @include status(#ef4444);
+    }
   }
 
   &__list {
@@ -55,14 +68,16 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    gap: 4px;
 
     background-color: #e7e5e4;
     padding: 20px 24px;
     margin: 24px 0px;
 
-    .bill__pizza-price {
+    .bill__pizza-price,
+    .bill__priority-price {
       font-size: 14px;
-      font-weight: 400;
+      font-weight: 500;
       color: #78716c;
     }
     .bill__delivery-price {
