@@ -1,22 +1,24 @@
 import { Form, redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { store } from "../../store";
+import store, { store as Store } from "../../store";
 import Button from "../../ui/button";
 import { createOrder } from "../../services/apiRestaurant";
 import { getCartPrice } from "../../utils/cartGetters";
 import { fetchAddress } from "../user/userSlice";
 import "./createOrder.scss";
+import { orderNew } from "../../utils/types";
 
 function CreateOrder() {
-  const user = useSelector((store: store) => store.user);
-  const cart = useSelector((store: store) => store.cart);
+  const user = useSelector((store: Store) => store.user);
+  const cart = useSelector((store: Store) => store.cart);
   const dispatch = useDispatch();
 
   const address = user.address;
   const isLoadingAddress = user.status === "loading";
 
   const handleSetPriority = (e: React.MouseEvent<HTMLInputElement>) => {
-    dispatch({ type: "cart/chgangePriority", payload: e.target.checked });
+    const target = e.target as HTMLInputElement;
+    dispatch({ type: "cart/changePriority", payload: target.checked });
   };
 
   if (!cart.items.length) return;
@@ -71,9 +73,9 @@ function CreateOrder() {
               <Button
                 text="Get position"
                 type="small"
-                callback={(e) => {
-                  e.preventDefault();
-                  dispatch(fetchAddress());
+                callback={async () => {
+                  //e.preventDefault();
+                  await store.dispatch(fetchAddress());
                 }}
               />
             </span>
@@ -109,7 +111,7 @@ export const action = async ({ request }) => {
     ...data,
     cart: JSON.parse(data.cart),
     priority: data.priority === "true",
-  };
+  } as orderNew;
 
   const newOrder = await createOrder(order);
   //clear cart

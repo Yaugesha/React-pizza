@@ -7,7 +7,7 @@ import { calcMinutesLeft, formatDate } from "../../utils/time";
 import "./order.scss";
 
 function Order() {
-  const order: order = useLoaderData();
+  const order: order = useLoaderData() as order;
 
   const deliveryIn = calcMinutesLeft(order.estimatedDelivery);
 

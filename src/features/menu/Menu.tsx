@@ -4,7 +4,7 @@ import MenuItem from "./MenuItem";
 import { menuItem } from "../../utils/types";
 
 function Menu() {
-  const menu: Array<menuItem> = useLoaderData();
+  const menu: Array<menuItem> = useLoaderData() as Array<menuItem>;
 
   return (
     <>

@@ -44,3 +44,7 @@ export interface AdressP {
   latitude: number;
   longitude: number;
 }
+
+export interface OrderRouteParams {
+  id: string;
+}

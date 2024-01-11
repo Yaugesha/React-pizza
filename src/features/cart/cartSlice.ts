@@ -49,7 +49,7 @@ const cartSlice = createSlice({
       item!.quantity--;
       item!.totalPrice = item!.quantity * item!.unitPrice;
     },
-    chgangePriority(state, action: PayloadAction<boolean>) {
+    changePriority(state, action: PayloadAction<boolean>) {
       state.priority = action.payload;
     },
     clear() {
