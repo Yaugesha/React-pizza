@@ -25,7 +25,9 @@ export interface ButtonP {
   text: string;
   type?: string;
   disabled?: boolean;
-  callback?: () => void;
+  callback?:
+    | (() => void)
+    | ((event: React.MouseEvent<HTMLButtonElement>) => Promise<void>);
 }
 
 export interface OrderItemP {
@@ -47,4 +49,7 @@ export interface AdressP {
 
 export interface OrderRouteParams {
   id: string;
+}
+export interface RequestData {
+  formData: () => Promise<FormData>;
 }

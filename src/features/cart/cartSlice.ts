@@ -16,7 +16,7 @@ const getItem = (
   });
 };
 
-const deleteItem = (
+const deleteItemFromCart = (
   items: Array<cartItem>,
   itemID: number
 ): Array<cartItem> => {
@@ -37,7 +37,7 @@ const cartSlice = createSlice({
       });
     },
     deleteItem(state, action: PayloadAction<number>) {
-      state.items = deleteItem(state.items, action.payload);
+      state.items = deleteItemFromCart(state.items, action.payload);
     },
     incrimentItem(state, action: PayloadAction<number>) {
       const item = getItem(state.items, action.payload);
@@ -58,6 +58,13 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addItem } = cartSlice.actions;
+export const {
+  addItem,
+  deleteItem,
+  incrimentItem,
+  decrimentItem,
+  changePriority,
+  clear,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

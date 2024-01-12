@@ -5,8 +5,10 @@ import Button from "../../ui/button";
 import { createOrder } from "../../services/apiRestaurant";
 import { getCartPrice } from "../../utils/cartGetters";
 import { fetchAddress } from "../user/userSlice";
-import "./createOrder.scss";
 import { orderNew } from "../../utils/types";
+import { clear } from "../cart/cartSlice";
+import { RequestData } from "../../utils/interfaces";
+import "./createOrder.scss";
 
 function CreateOrder() {
   const user = useSelector((store: Store) => store.user);
@@ -73,8 +75,10 @@ function CreateOrder() {
               <Button
                 text="Get position"
                 type="small"
-                callback={async () => {
-                  //e.preventDefault();
+                callback={async (
+                  e: React.MouseEvent<HTMLButtonElement>
+                ): Promise<void> => {
+                  e.preventDefault();
                   await store.dispatch(fetchAddress());
                 }}
               />
@@ -104,17 +108,17 @@ function CreateOrder() {
   );
 }
 
-export const action = async ({ request }) => {
+export const action = async ({ request }: { request: RequestData }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
   const order = {
     ...data,
-    cart: JSON.parse(data.cart),
+    cart: JSON.parse(data.cart.toString()),
     priority: data.priority === "true",
   } as orderNew;
 
   const newOrder = await createOrder(order);
-  //clear cart
+  store.dispatch(clear());
   return redirect(`/order/${newOrder.id}`);
 };
 

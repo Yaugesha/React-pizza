@@ -50,14 +50,20 @@ function Order() {
           .00
         </p>
       </div>
-      <div className="order__priority-button">
-        <Button text="MAKE PRIORITY" callback={() => {}} />
-      </div>
+      {!order.priority && (
+        <div className="order__priority-button">
+          <Button text="MAKE PRIORITY" callback={() => {}} />
+        </div>
+      )}
     </div>
   );
 }
 
-export const loader = async ({ params }) => {
+interface LoaderParams {
+  params: { id: string };
+}
+
+export const loader = async ({ params }: LoaderParams) => {
   const orderData = await getOrder(params.id);
   return orderData;
 };
