@@ -24,6 +24,7 @@ function App() {
           path: "/menu",
           element: <Menu />,
           loader: menuLoader,
+          errorElement: <Error />,
         },
         {
           path: "/cart",
@@ -41,6 +42,8 @@ function App() {
               path: ":id",
               element: <Order />,
               loader: orderLoader,
+              errorElement: <Error />,
+              action: crateOrderAction,
             },
           ],
         },

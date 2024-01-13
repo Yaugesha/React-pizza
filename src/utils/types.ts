@@ -59,3 +59,8 @@ export type orderNew = {
   priority: boolean;
   cart: Array<orderItem>;
 };
+
+export type error = {
+  data: string;
+  message: string;
+};

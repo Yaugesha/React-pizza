@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 import { getOrder } from "../../services/apiRestaurant";
 import Button from "../../ui/button";
 import OrderItem from "./OrderItem";
@@ -59,11 +59,10 @@ function Order() {
   );
 }
 
-interface LoaderParams {
-  params: { id: string };
-}
-
-export const loader = async ({ params }: LoaderParams) => {
+export const loader = async ({ params }: LoaderFunctionArgs) => {
+  if (params.id === undefined) {
+    throw new Error("params.id is undefined");
+  }
   const orderData = await getOrder(params.id);
   return orderData;
 };
