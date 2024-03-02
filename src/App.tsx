@@ -8,6 +8,10 @@ import CreateOrder, {
   action as crateOrderAction,
 } from "./features/order/CreateOrder";
 import Order, { loader as orderLoader } from "./features/order/Order";
+import CreatePizza, {
+  loader as ingredientsLoader,
+  // action as cratePizza,
+} from "./features/admin/CreatePizza";
 
 function App() {
   const router = createBrowserRouter([
@@ -44,6 +48,17 @@ function App() {
               loader: orderLoader,
               errorElement: <Error />,
               action: crateOrderAction,
+            },
+          ],
+        },
+        {
+          path: "/admin",
+          children: [
+            {
+              path: "create-pizza",
+              element: <CreatePizza />,
+              loader: ingredientsLoader,
+              errorElement: <Error />,
             },
           ],
         },

@@ -102,7 +102,7 @@ function CreateOrder() {
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart.items)} />
         </div>
-        <Button text={`ORDER NOW FROM €${getCartPrice(cart)}.00`} />
+        <Button text={`ORDER NOW FROM €${getCartPrice(cart)}`} />
       </Form>
     </div>
   );

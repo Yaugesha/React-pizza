@@ -1,0 +1,71 @@
+.form-choice-field {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+
+  &__label {
+    flex-basis: 10rem;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  &__values-container {
+    display: grid;
+    grid-template: auto / repeat(4, 1fr);
+    column-gap: 23px;
+    row-gap: 6px;
+  }
+
+  &__value-container {
+    position: relative;
+    width: 125px;
+    height: 45px;
+
+    border: 2px solid #facc15;
+    border-radius: 18px;
+    transition: 0.3s ease-out;
+
+    &:hover {
+      background-color: #fde047;
+    }
+  }
+
+  &__value {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 14px;
+
+    transition: 0.3s ease-out;
+  }
+
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 140px;
+    height: 50px;
+    opacity: 0;
+    border-radius: 16px;
+    cursor: pointer;
+  }
+
+  input[type="checkbox"]:checked ~ div {
+    width: 115px;
+    height: 35px;
+    margin: 3px auto;
+
+    border-radius: 16px;
+    background-color: #facc15;
+  }
+}
+
+.image-field {
+  height: 100px;
+  img {
+    height: 100px;
+  }
+}

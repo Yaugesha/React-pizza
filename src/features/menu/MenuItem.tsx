@@ -10,6 +10,7 @@ import "./menuItem.scss";
 function MenuItem({ item }: MenuItemP) {
   const cart = useSelector((store: store) => store.cart);
   const dispatch = useDispatch();
+  console.log(item);
 
   return (
     <li className="menu-item">
@@ -33,7 +34,7 @@ function MenuItem({ item }: MenuItemP) {
             <p className="menu-item__sold-out">SOLD OUT</p>
           ) : (
             <>
-              <p style={{ fontSize: "14px" }}>€{item.unitPrice}.00</p>
+              <p style={{ fontSize: "14px" }}>€{item.unitPrice}</p>
               {cart.items.find((cartItem: cartItem) => {
                 return cartItem.name === item.name;
               }) !== undefined ? (

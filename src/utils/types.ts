@@ -32,6 +32,21 @@ export type menuItem = {
   soldOut: boolean;
 };
 
+export type pizzaNew = {
+  pizza: {
+    name: string;
+    unitPrice: number;
+    image: File;
+    soldOut: boolean;
+    ingredients: Array<ingredient>;
+  };
+};
+
+export type ingredient = {
+  id: number;
+  name: string;
+};
+
 export type order = {
   cart: Array<orderItem>;
   estimatedDelivery: string;
