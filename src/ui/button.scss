@@ -5,6 +5,7 @@
   border: 2px solid rgba($color: #000000, $alpha: 0);
   border-radius: 1000px;
   padding: $p-y $p-x;
+  cursor: pointer;
 }
 
 @mixin hover() {

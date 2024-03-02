@@ -12,6 +12,11 @@ export const getCartPrice = (cart: cart): number => {
   return cart.priority ? pizzasPrice + pizzasPrice * 0.2 : pizzasPrice;
 };
 
-export const getItemQuantity = (cart: cart, itemId: number): number => {
-  return cart.items.find((item: cartItem) => item.pizzaId === itemId)!.quantity;
+export const getItemQuantity = (cart: cart, id: number): number => {
+  console.log(
+    cart,
+    `id - ${id}`,
+    cart.items.find((item: cartItem) => item.id === id)
+  );
+  return cart.items.find((item: cartItem) => item.id === id)!.quantity;
 };

@@ -4,7 +4,7 @@ export interface updateItemQuantityP {
 }
 
 export interface CartItemP {
-  pizzaId: number;
+  id: number;
   name: string;
   quantity: number;
   price: number;
@@ -12,7 +12,7 @@ export interface CartItemP {
 
 export interface MenuItemP {
   item: {
-    pizzaId: number;
+    id: number;
     name: string;
     unitPrice: number;
     imageUrl: string;
@@ -34,7 +34,7 @@ export interface OrderItemP {
   item: {
     addIngredients: Array<string>;
     name: string;
-    pizzaId: number;
+    id: number;
     quantity: number;
     removeIngredients: Array<string>;
     totalPrice: number;

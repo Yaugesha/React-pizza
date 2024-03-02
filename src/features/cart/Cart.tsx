@@ -27,8 +27,8 @@ function Cart() {
         {cart.items.map((item: cartItem) => {
           return (
             <CartItem
-              key={item.pizzaId}
-              pizzaId={item.pizzaId}
+              key={item.id}
+              id={item.id}
               name={item.name}
               price={item.unitPrice}
               quantity={item.quantity}

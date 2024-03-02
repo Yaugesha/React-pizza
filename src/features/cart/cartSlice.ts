@@ -12,7 +12,7 @@ const getItem = (
   itemID: number
 ): cartItem | undefined => {
   return items.find((item) => {
-    return item.pizzaId === itemID;
+    return item.id === itemID;
   });
 };
 
@@ -21,7 +21,7 @@ const deleteItemFromCart = (
   itemID: number
 ): Array<cartItem> => {
   return items.filter((item) => {
-    return item.pizzaId !== itemID;
+    return item.id !== itemID;
   });
 };
 

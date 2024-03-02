@@ -32,7 +32,7 @@ function Order() {
       </div>
       <ul className="order__list">
         {order.cart.map((orderItem: orderItem) => {
-          return <OrderItem item={orderItem} key={orderItem.pizzaId} />;
+          return <OrderItem item={orderItem} key={orderItem.id} />;
         })}
       </ul>
       <div className="order__bill">

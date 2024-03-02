@@ -1,5 +1,5 @@
 export type cartItem = {
-  pizzaId: number;
+  id: number;
   name: string;
   ingredients: Array<string>;
   unitPrice: number;
@@ -64,7 +64,7 @@ export type order = {
 export type orderItem = {
   addIngredients: Array<string>;
   name: string;
-  pizzaId: number;
+  id: number;
   quantity: number;
   removeIngredients: Array<string>;
   totalPrice: number;

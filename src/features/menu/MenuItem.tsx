@@ -10,7 +10,6 @@ import "./menuItem.scss";
 function MenuItem({ item }: MenuItemP) {
   const cart = useSelector((store: store) => store.cart);
   const dispatch = useDispatch();
-  console.log(item);
 
   return (
     <li className="menu-item">
@@ -36,12 +35,12 @@ function MenuItem({ item }: MenuItemP) {
             <>
               <p style={{ fontSize: "14px" }}>€{item.unitPrice}</p>
               {cart.items.find((cartItem: cartItem) => {
-                return cartItem.name === item.name;
+                return cartItem.id === item.id;
               }) !== undefined ? (
                 <div className="menu-item__quantity">
                   <UpdateItemQuantity
-                    itemId={item.pizzaId}
-                    currentQuantity={getItemQuantity(cart, item.pizzaId)}
+                    itemId={item.id}
+                    currentQuantity={getItemQuantity(cart, item.id)}
                   />
                   <Button
                     text={"DELETE"}
@@ -49,7 +48,7 @@ function MenuItem({ item }: MenuItemP) {
                     callback={() => {
                       dispatch({
                         type: "cart/deleteItem",
-                        payload: item.pizzaId,
+                        payload: item.id,
                       });
                     }}
                   />
