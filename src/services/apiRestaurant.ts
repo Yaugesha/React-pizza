@@ -1,4 +1,10 @@
-import { orderNew, menuItem, order } from "../utils/types";
+import {
+  orderNew,
+  menuItem,
+  order,
+  ingredient,
+  ingredientNew,
+} from "../utils/types";
 
 const API_URL = "http://localhost:3000/api/v1";
 
@@ -11,11 +17,8 @@ export async function getMenu(): Promise<Array<menuItem>> {
   return data;
 }
 
-export async function createPizza(
-  newPizza: FormData
-): Promise<Array<menuItem>> {
+export async function createPizza(newPizza: FormData): Promise<menuItem> {
   try {
-    console.log(newPizza);
     const res = await fetch(`${API_URL}/pizzas`, {
       method: "POST",
       body: newPizza,
@@ -29,13 +32,47 @@ export async function createPizza(
   }
 }
 
-export async function getIngredients(): Promise<Array<menuItem>> {
+export async function getIngredients(): Promise<Array<ingredient>> {
   const res = await fetch(`${API_URL}/ingredients`);
 
   if (!res.ok) throw Error("Failed getting ingredients");
 
   const data = await res.json();
   return data;
+}
+
+export async function createIngredient(
+  newIngredient: ingredientNew
+): Promise<ingredientNew> {
+  try {
+    const res = await fetch(`${API_URL}/ingredients`, {
+      method: "POST",
+      body: JSON.stringify(newIngredient),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!res.ok) throw Error();
+    const data = await res.json();
+    return data;
+  } catch {
+    throw Error("Failed creating new Ingredient");
+  }
+}
+
+export async function deleteIngredient(ingredientId: number): Promise<string> {
+  try {
+    const res = await fetch(`${API_URL}/ingredients/${ingredientId}`, {
+      method: "Delete",
+    });
+
+    if (!res.ok) throw Error();
+    const data = await res.json();
+    return data;
+  } catch {
+    throw Error("Failed delete Ingredient");
+  }
 }
 
 export async function getOrder(id: string) {
@@ -46,12 +83,12 @@ export async function getOrder(id: string) {
   return data;
 }
 
-export async function createOrder(newOrder: FormData): Promise<order> {
+export async function createOrder(newOrder: orderNew): Promise<order> {
   try {
     console.log(newOrder);
     const res = await fetch(`${API_URL}/order`, {
       method: "POST",
-      body: newOrder,
+      body: JSON.stringify(newOrder),
       headers: {
         "Content-Type": "application/json",
       },

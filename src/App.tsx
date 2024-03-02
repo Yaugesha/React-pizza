@@ -5,13 +5,16 @@ import Error from "./ui/Error";
 import Menu, { loader as menuLoader } from "./features/menu/Menu";
 import Cart from "./features/cart/Cart";
 import CreateOrder, {
-  action as crateOrderAction,
+  action as createOrderAction,
 } from "./features/order/CreateOrder";
 import Order, { loader as orderLoader } from "./features/order/Order";
 import CreatePizza, {
   loader as ingredientsLoader,
-  // action as cratePizza,
 } from "./features/admin/CreatePizza";
+import AddIngredient, {
+  action as createIngredientAction,
+} from "./features/admin/AddIngredient";
+import Ingredients from "./features/admin/Ingredients";
 
 function App() {
   const router = createBrowserRouter([
@@ -40,14 +43,14 @@ function App() {
             {
               path: "new",
               element: <CreateOrder />,
-              action: crateOrderAction,
+              action: createOrderAction,
             },
             {
               path: ":id",
               element: <Order />,
               loader: orderLoader,
               errorElement: <Error />,
-              action: crateOrderAction,
+              action: createOrderAction,
             },
           ],
         },
@@ -57,6 +60,18 @@ function App() {
             {
               path: "create-pizza",
               element: <CreatePizza />,
+              loader: ingredientsLoader,
+              errorElement: <Error />,
+            },
+            {
+              path: "add-ingredient",
+              element: <AddIngredient />,
+              errorElement: <Error />,
+              action: createIngredientAction,
+            },
+            {
+              path: "ingredients",
+              element: <Ingredients />,
               loader: ingredientsLoader,
               errorElement: <Error />,
             },

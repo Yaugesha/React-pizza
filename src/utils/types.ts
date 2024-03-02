@@ -47,6 +47,10 @@ export type ingredient = {
   name: string;
 };
 
+export type ingredientNew = {
+  name: string;
+};
+
 export type order = {
   cart: Array<orderItem>;
   estimatedDelivery: string;
