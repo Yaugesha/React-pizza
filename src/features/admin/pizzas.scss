@@ -1,0 +1,15 @@
+.pizzas-table {
+  display: grid;
+  row-gap: 8px;
+  margin-top: 20px;
+
+  &__row {
+    display: grid;
+    grid-template: auto / 15% 25% 5% 15% 15% 10% 15%;
+  }
+
+  &__cell {
+    display: flex;
+    align-items: center;
+  }
+}

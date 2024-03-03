@@ -15,6 +15,7 @@ import AddIngredient, {
   action as createIngredientAction,
 } from "./features/admin/AddIngredient";
 import Ingredients from "./features/admin/Ingredients";
+import Pizzas from "./features/admin/Pizzas";
 
 function App() {
   const router = createBrowserRouter([
@@ -58,22 +59,38 @@ function App() {
           path: "/admin",
           children: [
             {
-              path: "create-pizza",
-              element: <CreatePizza />,
-              loader: ingredientsLoader,
-              errorElement: <Error />,
-            },
-            {
-              path: "add-ingredient",
-              element: <AddIngredient />,
-              errorElement: <Error />,
-              action: createIngredientAction,
+              path: "pizzas",
+              children: [
+                {
+                  path: "",
+                  element: <Pizzas />,
+                  loader: menuLoader,
+                  errorElement: <Error />,
+                },
+                {
+                  path: "create",
+                  element: <CreatePizza />,
+                  loader: ingredientsLoader,
+                  errorElement: <Error />,
+                },
+              ],
             },
             {
               path: "ingredients",
-              element: <Ingredients />,
-              loader: ingredientsLoader,
-              errorElement: <Error />,
+              children: [
+                {
+                  path: "",
+                  element: <Ingredients />,
+                  loader: ingredientsLoader,
+                  errorElement: <Error />,
+                },
+                {
+                  path: "create",
+                  element: <AddIngredient />,
+                  errorElement: <Error />,
+                  action: createIngredientAction,
+                },
+              ],
             },
           ],
         },

@@ -10,7 +10,7 @@ function Ingredients() {
   return (
     <div className="table-container">
       <p className="table-heder">Table with all ingredients</p>
-      <Link to="../add-ingredient">
+      <Link to="./create">
         <span className="link">Add new ingredient</span>
       </Link>
       <div className="table">
