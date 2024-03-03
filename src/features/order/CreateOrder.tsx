@@ -112,9 +112,11 @@ export const action = async ({ request }: { request: RequestData }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
   const order = {
-    ...data,
-    cart: JSON.parse(data.cart.toString()),
-    priority: data.priority === "true",
+    order: {
+      ...data,
+      cart: JSON.parse(data.cart.toString()),
+      priority: data.priority === "true",
+    },
   } as orderNew;
 
   const newOrder = await createOrder(order);

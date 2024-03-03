@@ -72,11 +72,13 @@ export type orderItem = {
 };
 
 export type orderNew = {
-  customer: string;
-  phone: string;
-  adress: string;
-  priority: boolean;
-  cart: Array<orderItem>;
+  order: {
+    customer: string;
+    phone: string;
+    adress: string;
+    priority: boolean;
+    cart: Array<orderItem>;
+  };
 };
 
 export type error = {

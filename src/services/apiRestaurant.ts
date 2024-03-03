@@ -76,17 +76,16 @@ export async function deleteIngredient(ingredientId: number): Promise<string> {
 }
 
 export async function getOrder(id: string) {
-  const res = await fetch(`${API_URL}/order/${id}`);
+  const res = await fetch(`${API_URL}/orders/${id}`);
   if (!res.ok) throw Error(`Couldn't find order #${id}`);
 
-  const { data } = await res.json();
+  const data = await res.json();
   return data;
 }
 
 export async function createOrder(newOrder: orderNew): Promise<order> {
   try {
-    console.log(newOrder);
-    const res = await fetch(`${API_URL}/order`, {
+    const res = await fetch(`${API_URL}/orders`, {
       method: "POST",
       body: JSON.stringify(newOrder),
       headers: {
@@ -95,7 +94,7 @@ export async function createOrder(newOrder: orderNew): Promise<order> {
     });
 
     if (!res.ok) throw Error();
-    const { data } = await res.json();
+    const data = await res.json();
     return data as order;
   } catch {
     throw Error("Failed creating your order");

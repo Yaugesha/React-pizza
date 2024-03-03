@@ -13,10 +13,5 @@ export const getCartPrice = (cart: cart): number => {
 };
 
 export const getItemQuantity = (cart: cart, id: number): number => {
-  console.log(
-    cart,
-    `id - ${id}`,
-    cart.items.find((item: cartItem) => item.id === id)
-  );
   return cart.items.find((item: cartItem) => item.id === id)!.quantity;
 };
