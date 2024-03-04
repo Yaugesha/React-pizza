@@ -1,42 +1,26 @@
 import { useState } from "react";
-import { findPizza, updatePizza } from "../../services/apiRestaurant";
+import { findPizza, updatePizza } from "../../../services/apiRestaurant";
 import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
-import { ingredient, menuItem } from "../../utils/types";
+import { ingredient, menuItem } from "../../../utils/types";
 import { loader as ingredientsLoader } from "./CreatePizza";
-import Button from "../../ui/button";
+import {
+  addIngredient,
+  getPizzaIngredientsData,
+  handleSetImage,
+} from "./helper";
+import Button from "../../../ui/button";
 import "./createPizza.scss";
 
 function EditPizza() {
   const [ingredients, pizzaData] = useLoaderData() as [ingredient[], menuItem];
   const pizza = pizzaData;
 
-  const [pizzaIngredients, setIngredients] = useState<
-    Array<ingredient | undefined>
-  >(
-    pizza.ingredients.map((ingredientName: string) => {
-      return ingredients.find(
-        (ingredient: ingredient) => ingredient.name === ingredientName
-      );
-    })
+  const [pizzaIngredients, setIngredients] = useState<Array<ingredient>>(
+    getPizzaIngredientsData(pizza, ingredients)
   );
+
   const [isSoldOut, setSoldOut] = useState<boolean>(pizza.soldOut);
   const [image, setImage] = useState<string>(pizza.imageUrl);
-
-  const addIngredient = (newIngredient: ingredient) => {
-    pizzaIngredients.includes(newIngredient)
-      ? setIngredients([
-          ...pizzaIngredients.filter(
-            (ingredient) => ingredient !== newIngredient
-          ),
-        ])
-      : setIngredients([...pizzaIngredients, newIngredient]);
-  };
-
-  const handleSetImage = (e: React.FormEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const target = e.target;
-    setImage(URL.createObjectURL(target.files[0]));
-  };
 
   const handleSubmitForm = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -52,7 +36,9 @@ function EditPizza() {
     data.append("pizza[unitPrice]", target.unitPrice.value);
     data.append("pizza[soldOut]", JSON.stringify(isSoldOut));
     data.append("pizza[ingredients]", JSON.stringify(pizzaIngredients));
-    data.append("pizza[image]", target.image.files[0]);
+    if (target.image.files[0]) {
+      data.append("pizza[image]", target.image.files[0]);
+    }
 
     const updatedPizza = updatePizza(data, pizza.id);
     console.log(updatedPizza);
@@ -60,7 +46,9 @@ function EditPizza() {
 
   return (
     <div className="form">
-      <p className="form__header">Fill out rhe form below to edit new pizza!</p>
+      <p className="form__header">
+        Fill out rhe form below to edit {pizza.name} pizza!
+      </p>
       <form method="POST" onSubmit={handleSubmitForm}>
         <div className="form-field">
           <label className="form-field__label" htmlFor="name">
@@ -98,7 +86,9 @@ function EditPizza() {
             className="form-field__image-input"
             name="image"
             accept="image/*"
-            onChange={handleSetImage}
+            onChange={(e) => {
+              handleSetImage(e, setImage);
+            }}
             type="file"
           />
           {image && <img src={image} alt="pizza image" />}
@@ -117,7 +107,11 @@ function EditPizza() {
                     name={`ingredient`}
                     defaultChecked={pizza.ingredients.includes(ingredient.name)}
                     onClick={() => {
-                      addIngredient(ingredient);
+                      addIngredient(
+                        ingredient,
+                        pizzaIngredients,
+                        setIngredients
+                      );
                     }}
                   />
                   <div className="form-choice-field__value">

@@ -1,8 +1,8 @@
 import { Form } from "react-router-dom";
-import Button from "../../ui/button";
-import { RequestData } from "../../utils/interfaces";
-import { ingredientNew } from "../../utils/types";
-import { createIngredient } from "../../services/apiRestaurant";
+import Button from "../../../ui/button";
+import { RequestData } from "../../../utils/interfaces";
+import { ingredientNew } from "../../../utils/types";
+import { createIngredient } from "../../../services/apiRestaurant";
 
 function AddIngredient() {
   return (

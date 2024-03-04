@@ -10,15 +10,15 @@ import CreateOrder, {
 import Order, { loader as orderLoader } from "./features/order/Order";
 import CreatePizza, {
   loader as ingredientsLoader,
-} from "./features/admin/CreatePizza";
+} from "./features/admin/pizzas/CreatePizza";
 import AddIngredient, {
   action as createIngredientAction,
-} from "./features/admin/AddIngredient";
-import Ingredients from "./features/admin/Ingredients";
-import Pizzas from "./features/admin/Pizzas";
+} from "./features/admin/ingredients/AddIngredient";
+import Ingredients from "./features/admin/ingredients/Ingredients";
+import Pizzas from "./features/admin/pizzas/Pizzas";
 import EditPizza, {
   loader as findPizzaLoader,
-} from "./features/admin/EditPizza";
+} from "./features/admin/pizzas/EditPizza";
 
 function App() {
   const router = createBrowserRouter([

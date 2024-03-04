@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { createPizza, getIngredients } from "../../services/apiRestaurant";
+import { createPizza, getIngredients } from "../../../services/apiRestaurant";
 import { useLoaderData } from "react-router-dom";
-import { ingredient } from "../../utils/types";
-import Button from "../../ui/button";
+import { ingredient } from "../../../utils/types";
+import Button from "../../../ui/button";
 import "./createPizza.scss";
+import { addIngredient, handleSetImage } from "./helper";
 
 function CreatePizza() {
   const ingredients: Array<ingredient> = useLoaderData() as Array<ingredient>;
@@ -11,22 +12,6 @@ function CreatePizza() {
   const [pizzaIngredients, setIngredients] = useState<Array<ingredient>>([]);
   const [isSoldOut, setSoldOut] = useState<boolean>(false);
   const [image, setImage] = useState<string>("");
-
-  const addIngredient = (newIngredient: ingredient) => {
-    pizzaIngredients.includes(newIngredient)
-      ? setIngredients([
-          ...pizzaIngredients.filter(
-            (ingredient) => ingredient !== newIngredient
-          ),
-        ])
-      : setIngredients([...pizzaIngredients, newIngredient]);
-  };
-
-  const handleSetImage = (e: React.FormEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const target = e.target;
-    setImage(URL.createObjectURL(target.files[0]));
-  };
 
   const handleSubmitForm = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -88,7 +73,9 @@ function CreatePizza() {
             className="form-field__image-input"
             name="image"
             accept="image/*"
-            onChange={handleSetImage}
+            onChange={(e) => {
+              handleSetImage(e, setImage);
+            }}
             type="file"
           />
           {image && <img src={image} alt="pizza image" />}
@@ -106,7 +93,11 @@ function CreatePizza() {
                     type="checkBox"
                     name={`ingredient`}
                     onClick={() => {
-                      addIngredient(ingredient);
+                      addIngredient(
+                        ingredient,
+                        pizzaIngredients,
+                        setIngredients
+                      );
                     }}
                   />
                   <div className="form-choice-field__value">

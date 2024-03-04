@@ -1,8 +1,8 @@
 import { Link, useLoaderData } from "react-router-dom";
-import { ingredient } from "../../utils/types";
-import Button from "../../ui/button";
+import { ingredient } from "../../../utils/types";
+import Button from "../../../ui/button";
 import "./ingresients.scss";
-import { deleteIngredient } from "../../services/apiRestaurant";
+import { deleteIngredient } from "../../../services/apiRestaurant";
 
 function Ingredients() {
   const ingredients: Array<ingredient> = useLoaderData() as Array<ingredient>;

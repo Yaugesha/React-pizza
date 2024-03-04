@@ -1,6 +1,6 @@
 import { Link, useLoaderData } from "react-router-dom";
-import { menuItem } from "../../utils/types";
-import Button from "../../ui/button";
+import { menuItem } from "../../../utils/types";
+import Button from "../../../ui/button";
 import "./pizzas.scss";
 
 function Pizzas() {
