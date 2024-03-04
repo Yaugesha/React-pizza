@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createPizza, getIngredients } from "../../../services/apiRestaurant";
+import { createPizza } from "../../../services/apiRestaurant";
 import { useLoaderData } from "react-router-dom";
 import { ingredient } from "../../../utils/types";
 import Button from "../../../ui/button";
@@ -126,11 +126,6 @@ function CreatePizza() {
       </form>
     </div>
   );
-}
-
-export async function loader(): Promise<Array<ingredient>> {
-  const ingredients = await getIngredients();
-  return ingredients;
 }
 
 export default CreatePizza;

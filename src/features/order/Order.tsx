@@ -1,5 +1,4 @@
-import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
-import { getOrder } from "../../services/apiRestaurant";
+import { useLoaderData } from "react-router-dom";
 import Button from "../../ui/button";
 import OrderItem from "./OrderItem";
 import { order, orderItem } from "../../utils/types";
@@ -58,13 +57,5 @@ function Order() {
     </div>
   );
 }
-
-export const loader = async ({ params }: LoaderFunctionArgs) => {
-  if (params.id === undefined) {
-    throw new Error("params.id is undefined");
-  }
-  const orderData = await getOrder(params.id);
-  return orderData;
-};
 
 export default Order;

@@ -2,23 +2,22 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./ui/Home";
 import AppLayout from "./ui/AppLayout";
 import Error from "./ui/Error";
-import Menu, { loader as menuLoader } from "./features/menu/Menu";
+import Menu from "./features/menu/Menu";
 import Cart from "./features/cart/Cart";
-import CreateOrder, {
-  action as createOrderAction,
-} from "./features/order/CreateOrder";
-import Order, { loader as orderLoader } from "./features/order/Order";
-import CreatePizza, {
-  loader as ingredientsLoader,
-} from "./features/admin/pizzas/CreatePizza";
-import AddIngredient, {
-  action as createIngredientAction,
-} from "./features/admin/ingredients/AddIngredient";
+import CreateOrder from "./features/order/CreateOrder";
+import Order from "./features/order/Order";
+import CreatePizza from "./features/admin/pizzas/CreatePizza";
+import AddIngredient from "./features/admin/ingredients/AddIngredient";
 import Ingredients from "./features/admin/ingredients/Ingredients";
 import Pizzas from "./features/admin/pizzas/Pizzas";
-import EditPizza, {
-  loader as findPizzaLoader,
-} from "./features/admin/pizzas/EditPizza";
+import EditPizza from "./features/admin/pizzas/EditPizza";
+import {
+  editPizzaLoader,
+  ingredientsLoader,
+  menuLoader,
+  orderLoader,
+} from "./services/loaders";
+import { createIngredientAction, createOrderAction } from "./services/actions";
 
 function App() {
   const router = createBrowserRouter([
@@ -79,7 +78,7 @@ function App() {
                 {
                   path: "edit/:id",
                   element: <EditPizza />,
-                  loader: findPizzaLoader,
+                  loader: editPizzaLoader,
                   errorElement: <Error />,
                 },
               ],

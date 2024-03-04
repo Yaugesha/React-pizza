@@ -17,9 +17,4 @@ function Menu() {
   );
 }
 
-export async function loader(): Promise<Array<menuItem>> {
-  const menu = await getMenu();
-  return menu;
-}
-
 export default Menu;

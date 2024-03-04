@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { findPizza, updatePizza } from "../../../services/apiRestaurant";
-import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
+import { updatePizza } from "../../../services/apiRestaurant";
+import { useLoaderData } from "react-router-dom";
 import { ingredient, menuItem } from "../../../utils/types";
-import { loader as ingredientsLoader } from "./CreatePizza";
 import {
   addIngredient,
   getPizzaIngredientsData,
@@ -141,17 +140,5 @@ function EditPizza() {
     </div>
   );
 }
-
-export const findPizzaLoader = async ({ params }: LoaderFunctionArgs) => {
-  if (params.id === undefined) {
-    throw new Error("params.id is undefined");
-  }
-  const pizza = await findPizza(params.id);
-  return pizza;
-};
-
-export const loader = (params: LoaderFunctionArgs) => {
-  return Promise.all([ingredientsLoader(), findPizzaLoader(params)]);
-};
 
 export default EditPizza;

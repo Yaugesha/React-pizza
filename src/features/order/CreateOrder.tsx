@@ -1,13 +1,9 @@
-import { Form, redirect } from "react-router-dom";
+import { Form } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import store, { store as Store } from "../../store";
 import Button from "../../ui/button";
-import { createOrder } from "../../services/apiRestaurant";
 import { getCartPrice } from "../../utils/cartGetters";
 import { fetchAddress } from "../user/userSlice";
-import { orderNew } from "../../utils/types";
-import { clear } from "../cart/cartSlice";
-import { RequestData } from "../../utils/interfaces";
 import "./createOrder.scss";
 
 function CreateOrder() {
@@ -107,21 +103,5 @@ function CreateOrder() {
     </div>
   );
 }
-
-export const action = async ({ request }: { request: RequestData }) => {
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData);
-  const order = {
-    order: {
-      ...data,
-      cart: JSON.parse(data.cart.toString()),
-      priority: data.priority === "true",
-    },
-  } as orderNew;
-
-  const newOrder = await createOrder(order);
-  store.dispatch(clear());
-  return redirect(`/order/${newOrder.id}`);
-};
 
 export default CreateOrder;

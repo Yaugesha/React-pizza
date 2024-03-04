@@ -1,8 +1,5 @@
 import { Form } from "react-router-dom";
 import Button from "../../../ui/button";
-import { RequestData } from "../../../utils/interfaces";
-import { ingredientNew } from "../../../utils/types";
-import { createIngredient } from "../../../services/apiRestaurant";
 
 function AddIngredient() {
   return (
@@ -24,14 +21,3 @@ function AddIngredient() {
 }
 
 export default AddIngredient;
-
-export const action = async ({ request }: { request: RequestData }) => {
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData);
-  const ingredient = {
-    ingredient: data,
-  } as unknown as ingredientNew;
-
-  const newIngredient = await createIngredient(ingredient);
-  console.log(newIngredient);
-};
