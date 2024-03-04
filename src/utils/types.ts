@@ -45,6 +45,8 @@ export type pizzaNew = {
 export type ingredient = {
   id: number;
   name: string;
+  numberOfPizzas: number;
+  popularity: number;
 };
 
 export type ingredientNew = {

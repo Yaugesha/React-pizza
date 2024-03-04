@@ -32,6 +32,37 @@ export async function createPizza(newPizza: FormData): Promise<menuItem> {
   }
 }
 
+export async function updatePizza(
+  newPizza: FormData,
+  pizzaId: number
+): Promise<menuItem> {
+  try {
+    const res = await fetch(`${API_URL}/pizzas/${pizzaId}`, {
+      method: "PATCH",
+      body: newPizza,
+    });
+
+    if (!res.ok) throw Error();
+    const data = await res.json();
+    return data;
+  } catch {
+    throw Error("Failed creating new Pizza");
+  }
+}
+
+export async function findPizza(id: string): Promise<menuItem> {
+  try {
+    const res = await fetch(`${API_URL}/pizzas/${id}`);
+
+    if (!res.ok) throw Error();
+
+    const data = await res.json();
+    return data;
+  } catch {
+    throw Error("Failed to find Pizza with id: " + id);
+  }
+}
+
 export async function getIngredients(): Promise<Array<ingredient>> {
   const res = await fetch(`${API_URL}/ingredients`);
 

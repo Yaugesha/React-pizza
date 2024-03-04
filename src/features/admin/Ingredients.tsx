@@ -18,8 +18,12 @@ function Ingredients() {
           return (
             <div className="table-row" key={ingredient.id}>
               <span className="table-row__main-cell">{ingredient.name}</span>
-              <span className="table-row__2-cell">In pizzas: 5</span>
-              <span className="table-row__3-cell">Popularity: 14%</span>
+              <span className="table-row__2-cell">
+                In pizzas: {ingredient.numberOfPizzas}
+              </span>
+              <span className="table-row__3-cell">
+                Popularity: {ingredient.popularity}%
+              </span>
               <span className="table-row__4-cell">
                 <Link to="/edit">Edit</Link>
               </span>

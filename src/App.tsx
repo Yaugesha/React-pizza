@@ -16,6 +16,9 @@ import AddIngredient, {
 } from "./features/admin/AddIngredient";
 import Ingredients from "./features/admin/Ingredients";
 import Pizzas from "./features/admin/Pizzas";
+import EditPizza, {
+  loader as findPizzaLoader,
+} from "./features/admin/EditPizza";
 
 function App() {
   const router = createBrowserRouter([
@@ -71,6 +74,12 @@ function App() {
                   path: "create",
                   element: <CreatePizza />,
                   loader: ingredientsLoader,
+                  errorElement: <Error />,
+                },
+                {
+                  path: "edit/:id",
+                  element: <EditPizza />,
+                  loader: findPizzaLoader,
                   errorElement: <Error />,
                 },
               ],

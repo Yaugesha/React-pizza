@@ -32,7 +32,7 @@ function Pizzas() {
               <span className="pizzas-table__cell">Orders all</span>
               <span className="pizzas-table__cell">Orders now</span>
               <span className="pizzas-table__cell">
-                <Link to="/edit">Edit</Link>
+                <Link to={`./edit/${item.id}`}>Edit</Link>
               </span>
               <span className="pizzas-table__cell">
                 <Button text="Delete" type="small" />
