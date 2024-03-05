@@ -13,11 +13,19 @@ import Pizzas from "./features/admin/pizzas/Pizzas";
 import EditPizza from "./features/admin/pizzas/EditPizza";
 import {
   editPizzaLoader,
+  ingredientLoader,
   ingredientsLoader,
   menuLoader,
   orderLoader,
+  ordersLoader,
 } from "./services/loaders";
-import { createIngredientAction, createOrderAction } from "./services/actions";
+import {
+  createIngredientAction,
+  createOrderAction,
+  updateIngredientAction,
+} from "./services/actions";
+import Orders from "./features/admin/orders/Orders";
+import EditIngredient from "./features/admin/ingredients/EditIngredient";
 
 function App() {
   const router = createBrowserRouter([
@@ -97,6 +105,24 @@ function App() {
                   element: <AddIngredient />,
                   errorElement: <Error />,
                   action: createIngredientAction,
+                },
+                {
+                  path: "edit/:id",
+                  element: <EditIngredient />,
+                  loader: ingredientLoader,
+                  errorElement: <Error />,
+                  action: updateIngredientAction,
+                },
+              ],
+            },
+            {
+              path: "orders",
+              children: [
+                {
+                  path: "",
+                  element: <Orders />,
+                  loader: ordersLoader,
+                  errorElement: <Error />,
                 },
               ],
             },

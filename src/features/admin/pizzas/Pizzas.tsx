@@ -15,7 +15,7 @@ function Pizzas() {
       <div className="pizzas-table">
         {menuItems.map((item) => {
           return (
-            <div className="pizzas-table__row">
+            <div className="pizzas-table__row" key={item.id}>
               <span className="pizzas-table__cell">{item.name}</span>
               <span className="pizzas-table__cell">
                 {item.ingredients.map((ingredient: string, index: number) => {

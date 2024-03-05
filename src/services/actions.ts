@@ -3,7 +3,11 @@ import { clear } from "../features/cart/cartSlice";
 import store from "../store";
 import { RequestData } from "../utils/interfaces";
 import { ingredientNew, orderNew } from "../utils/types";
-import { createIngredient, createOrder } from "./apiRestaurant";
+import {
+  createIngredient,
+  createOrder,
+  updateIngredient,
+} from "./apiRestaurant";
 
 export const createOrderAction = async ({
   request,
@@ -38,4 +42,24 @@ export const createIngredientAction = async ({
 
   const newIngredient = await createIngredient(ingredient);
   console.log(newIngredient);
+  return redirect(`/admin/ingredients/`);
+};
+
+export const updateIngredientAction = async ({
+  request,
+}: {
+  request: RequestData;
+}) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData) as {
+    id: string;
+    name: string;
+  };
+  const ingredient = {
+    ingredient: { name: data.name },
+  } as unknown as ingredientNew;
+
+  const newIngredient = await updateIngredient(ingredient, +data.id);
+  console.log(newIngredient);
+  return redirect(`/admin/ingredients/`);
 };

@@ -25,7 +25,7 @@ function Ingredients() {
                 Popularity: {ingredient.popularity}%
               </span>
               <span className="table-row__4-cell">
-                <Link to="/edit">Edit</Link>
+                <Link to={`./edit/${ingredient.id}`}>Edit</Link>
               </span>
               <span className="table-row__5-cell">
                 <Button

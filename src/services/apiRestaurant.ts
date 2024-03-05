@@ -46,7 +46,7 @@ export async function updatePizza(
     const data = await res.json();
     return data;
   } catch {
-    throw Error("Failed creating new Pizza");
+    throw Error("Failed upadting Pizza");
   }
 }
 
@@ -104,6 +104,48 @@ export async function deleteIngredient(ingredientId: number): Promise<string> {
   } catch {
     throw Error("Failed delete Ingredient");
   }
+}
+
+export async function updateIngredient(
+  ingredient: ingredientNew,
+  ingredientId: number
+): Promise<ingredient> {
+  try {
+    const res = await fetch(`${API_URL}/ingredients/${ingredientId}`, {
+      method: "PATCH",
+      body: JSON.stringify(ingredient),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!res.ok) throw Error();
+    const data = await res.json();
+    return data;
+  } catch {
+    throw Error("Failed upadting Ingredient");
+  }
+}
+
+export async function findIngredient(id: string): Promise<ingredient> {
+  try {
+    const res = await fetch(`${API_URL}/ingredients/${id}`);
+
+    if (!res.ok) throw Error();
+
+    const data = await res.json();
+    return data;
+  } catch {
+    throw Error("Failed to find Ingredient with id: " + id);
+  }
+}
+
+export async function getOrders() {
+  const res = await fetch(`${API_URL}/orders`);
+  if (!res.ok) throw Error(`Couldn't find any orders`);
+
+  const data = await res.json();
+  return data;
 }
 
 export async function getOrder(id: string) {
