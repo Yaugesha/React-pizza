@@ -63,6 +63,20 @@ export async function findPizza(id: string): Promise<menuItem> {
   }
 }
 
+export async function deletePizza(pizzaId: number): Promise<string> {
+  try {
+    const res = await fetch(`${API_URL}/pizzas/${pizzaId}`, {
+      method: "Delete",
+    });
+
+    if (!res.ok) throw Error();
+    const data = await res.json();
+    return data;
+  } catch {
+    throw Error("Failed delete Pizza");
+  }
+}
+
 export async function getIngredients(): Promise<Array<ingredient>> {
   const res = await fetch(`${API_URL}/ingredients`);
 

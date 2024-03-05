@@ -2,6 +2,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import { menuItem } from "../../../utils/types";
 import Button from "../../../ui/button";
 import "./pizzas.scss";
+import { deletePizza } from "../../../services/apiRestaurant";
 
 function Pizzas() {
   const menuItems: Array<menuItem> = useLoaderData() as Array<menuItem>;
@@ -35,7 +36,15 @@ function Pizzas() {
                 <Link to={`./edit/${item.id}`}>Edit</Link>
               </span>
               <span className="pizzas-table__cell">
-                <Button text="Delete" type="small" />
+                <Button
+                  text="Delete"
+                  type="small"
+                  callback={() => {
+                    confirm(
+                      "Are you sure it will delete this pizza from all delivered orders?"
+                    ) && deletePizza(item.id);
+                  }}
+                />
               </span>
             </div>
           );
