@@ -30,6 +30,8 @@ export type menuItem = {
   imageUrl: string;
   ingredients: string[];
   soldOut: boolean;
+  countOfOrders: number;
+  quantityInCurrentOrders: number;
 };
 
 export type pizzaNew = {

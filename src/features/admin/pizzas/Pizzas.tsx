@@ -30,8 +30,12 @@ function Pizzas() {
               ) : (
                 <span className="pizzas-table__cell">€{item.unitPrice}</span>
               )}
-              <span className="pizzas-table__cell">Orders all</span>
-              <span className="pizzas-table__cell">Orders now</span>
+              <span className="pizzas-table__cell">
+                Ordered: {item.countOfOrders}
+              </span>
+              <span className="pizzas-table__cell">
+                Prepering: {item.quantityInCurrentOrders}
+              </span>
               <span className="pizzas-table__cell">
                 <Link to={`./edit/${item.id}`}>Edit</Link>
               </span>
