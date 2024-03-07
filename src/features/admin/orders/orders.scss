@@ -1,0 +1,19 @@
+.orders-table {
+  display: grid;
+  row-gap: 8px;
+  margin-top: 20px;
+
+  &__row {
+    display: grid;
+    grid-template: auto/8% 30% 20% 25% 6% 11%;
+  }
+
+  &__cell {
+    display: flex;
+    align-items: center;
+  }
+
+  details {
+    cursor: pointer;
+  }
+}

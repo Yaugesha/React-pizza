@@ -1,0 +1,26 @@
+.order-data {
+  display: grid;
+  grid-template-areas:
+    "delivery delivery"
+    "cart user-data";
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 10px;
+
+  padding: 24px 16px;
+
+  &__delivery {
+    grid-area: delivery;
+    margin-bottom: 16px;
+    // background-color: #8ca0ff;
+  }
+
+  &__cart {
+    grid-area: cart;
+    // background-color: #ffa08c;
+  }
+
+  &__user-data {
+    grid-area: user-data;
+    // background-color: #ffff64;
+  }
+}

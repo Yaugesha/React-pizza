@@ -25,6 +25,7 @@ import {
   updateIngredientAction,
 } from "./services/actions";
 import Orders from "./features/admin/orders/Orders";
+import OrderData from "./features/admin/orders/OrderData";
 import EditIngredient from "./features/admin/ingredients/EditIngredient";
 
 function App() {
@@ -122,6 +123,12 @@ function App() {
                   path: "",
                   element: <Orders />,
                   loader: ordersLoader,
+                  errorElement: <Error />,
+                },
+                {
+                  path: ":id",
+                  element: <OrderData />,
+                  loader: orderLoader,
                   errorElement: <Error />,
                 },
               ],
