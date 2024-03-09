@@ -1,6 +1,6 @@
 import { Form, useNavigate } from "react-router-dom";
 import "./home.scss";
-import Button from "./button";
+import Button from "../../button";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 

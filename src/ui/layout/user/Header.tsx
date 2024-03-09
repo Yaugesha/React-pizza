@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { store } from "../store";
+import { store } from "../../../store";
 import "./header.scss";
 
 function Header() {

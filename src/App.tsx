@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Home from "./ui/Home";
-import AppLayout from "./ui/AppLayout";
+import Home from "./ui/layout/user/Home";
+import AppLayout from "./ui/layout/user/AppLayout";
+import AdminAppLayout from "./ui/layout/admin/AdminAppLayout";
 import Error from "./ui/Error";
 import Menu from "./features/menu/Menu";
 import Cart from "./features/cart/Cart";
@@ -27,6 +28,8 @@ import {
 import Orders from "./features/admin/orders/Orders";
 import OrderData from "./features/admin/orders/OrderData";
 import EditIngredient from "./features/admin/ingredients/EditIngredient";
+import LogIn from "./features/admin/authorization/LogIn";
+import SignUp from "./features/admin/authorization/SignUp";
 
 function App() {
   const router = createBrowserRouter([
@@ -66,6 +69,13 @@ function App() {
             },
           ],
         },
+      ],
+    },
+    {
+      element: <AdminAppLayout />,
+      errorElement: <Error />,
+
+      children: [
         {
           path: "/admin",
           children: [
@@ -132,6 +142,16 @@ function App() {
                   errorElement: <Error />,
                 },
               ],
+            },
+            {
+              path: "login",
+              element: <LogIn />,
+              errorElement: <Error />,
+            },
+            {
+              path: "signup",
+              element: <SignUp />,
+              errorElement: <Error />,
             },
           ],
         },
