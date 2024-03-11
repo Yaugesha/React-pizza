@@ -23,6 +23,7 @@ export const fetchAddress = createAsyncThunk(
 );
 
 const initialState = {
+  role: "user",
   username: "",
   status: "idle",
   position: {},
@@ -35,6 +36,9 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     updateName(state, action) {
+      state.username = action.payload;
+    },
+    authenticateAdmin(state, action) {
       state.username = action.payload;
     },
   },

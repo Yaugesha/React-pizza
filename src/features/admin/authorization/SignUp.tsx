@@ -1,26 +1,50 @@
+import { useState } from "react";
 import Button from "../../../ui/button";
 import "./auth.scss";
+import { signup } from "../../../services/apiAdmin";
 
 function SignUp() {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
   return (
     <div className="auth-form">
       <div className="auth-form__field">
         <label htmlFor="email">Email</label>
-        <input type="text" name="email" />
+        <input
+          type="text"
+          name="email"
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
       </div>
       <div className="auth-form__field">
         <label htmlFor="phone">Phone</label>
-        <input type="phone" name="phone" />
+        <input
+          type="phone"
+          name="phone"
+          onChange={(e) => {
+            setPhone(e.target.value);
+          }}
+        />
       </div>
       <div className="auth-form__field">
         <label htmlFor="password">Password</label>
-        <input type="password" name="password" />
+        <input
+          type="password"
+          name="password"
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
       </div>
-      <div className="auth-form__field">
-        <label htmlFor="password_confirmation ">Confirm Password</label>
-        <input type="password_confirmation " name="password_confirmation " />
-      </div>
-      <Button text="Sign Up" />
+      <Button
+        text="Sign Up"
+        callback={async () => {
+          signup({ email, password, phone });
+        }}
+      />
     </div>
   );
 }

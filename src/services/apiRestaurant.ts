@@ -52,7 +52,12 @@ export async function updatePizza(
 
 export async function findPizza(id: string): Promise<menuItem> {
   try {
-    const res = await fetch(`${API_URL}/pizzas/${id}`);
+    const res = await fetch(`${API_URL}/pizzas/${id}`, {
+      headers: {
+        authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI3MjcwNzJmNS03OWNjLTRjNzQtYWU4Yy1mZjVlYzc5NmZjZGEiLCJzdWIiOiIyIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNzEwMDE0MDU3LCJleHAiOjE3MTAwMTU4NTd9.9dbzbFGjHzOxM5YO71Fr95wR82slbDYpHv5c9W80K4I",
+      },
+    });
 
     if (!res.ok) throw Error();
 
